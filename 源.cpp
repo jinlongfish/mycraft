@@ -4,7 +4,6 @@
 #include <conio.h>
 #include <stdlib.h>
 
-#define MAXSTAR 400	// ĞÇĞÇ×ÜÊı
 
 void printLetter(char letter);
 void deleteLetter();
@@ -22,12 +21,12 @@ LRESULT CALLBACK LowLevelMouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 
 
 
-// ´ò¿ªÄ¬ÈÏä¯ÀÀÆ÷²¢µ¼º½µ½Ö¸¶¨ÍøÖ·
+// æ‰“å¼€é»˜è®¤æµè§ˆå™¨å¹¶å¯¼èˆªåˆ°æŒ‡å®šç½‘å€
 void openURL(const char* url) {
-	// Ê¹ÓÃÏµÍ³Ä¬ÈÏµÄä¯ÀÀÆ÷´ò¿ªÖ¸¶¨ÍøÖ·
+	// ä½¿ç”¨ç³»ç»Ÿé»˜è®¤çš„æµè§ˆå™¨æ‰“å¼€æŒ‡å®šç½‘å€
 	ShellExecuteA(NULL, "open", url, NULL, NULL, SW_SHOWNORMAL);
 
-	// »ñÈ¡ä¯ÀÀÆ÷´°¿Ú¾ä±ú
+	// è·å–æµè§ˆå™¨çª—å£å¥æŸ„
 	HWND browserWindow = FindWindowA("Chrome_WidgetWin_1", NULL);
 
 	
@@ -41,12 +40,12 @@ void openURL(const char* url) {
 
 void printLetter(char letter)
 {
-	printf("%c", letter); // ´òÓ¡×Ö·û
+	printf("%c", letter); // æ‰“å°å­—ç¬¦
 }
 
 void deleteLetter()
 {
-	printf("\b \b"); // Öğ¸öÉ¾³ı×Ö·û
+	printf("\b \b"); // é€ä¸ªåˆ é™¤å­—ç¬¦
 }
 
 
@@ -54,7 +53,7 @@ void deleteLetter()
 
 
 
-// ÑÓ³ÙÒ»¶ÎÊ±¼ä
+// å»¶è¿Ÿä¸€æ®µæ—¶é—´
 void delay(int milliseconds) {
 	Sleep(milliseconds);
 }
@@ -71,7 +70,7 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam) {
 		PKBDLLHOOKSTRUCT p = (PKBDLLHOOKSTRUCT)lParam;
 
 		if (p->vkCode == VK_MENU) {
-			return 1; // ½ûÖ¹Alt¼üµÄ°´ÏÂºÍÊÍ·ÅÊÂ¼ş
+			return 1; // ç¦æ­¢Alté”®çš„æŒ‰ä¸‹å’Œé‡Šæ”¾äº‹ä»¶
 		}
 	}
 
@@ -84,7 +83,7 @@ int main(int argc, char* argv[])
 {
 	int sleepcount = 0;
 	const char* url = "https://fastcdn.mihoyo.com/content-v2/hk4e/123401/124a3679c64c4f65c30b6a5e34bc619d_5553679192264566999.mp4";
-	char message[] = "±¾³ÌĞò½ö¹©ÓéÀÖ£¬ÇëÎğÀÄÓÃ£¡£¡\n yuan shen ma shang qi dong......";
+	char message[] = "æœ¬ç¨‹åºä»…ä¾›å¨±ä¹ï¼Œè¯·å‹¿æ»¥ç”¨ï¼ï¼\n yuan shen ma shang qi dong......";
 	int length = strlen(message);
 	int i;
 
@@ -101,7 +100,7 @@ int main(int argc, char* argv[])
 	HHOOK mouseHook = SetWindowsHookEx(WH_MOUSE_LL, LowLevelMouseProc, GetModuleHandle(NULL), 0);
 	if (mouseHook == NULL)
 	{
-		printf("ÎŞ·¨ÉèÖÃÊó±ê¹³×Ó\n");
+		printf("æ— æ³•è®¾ç½®é¼ æ ‡é’©å­\n");
 		return 1;
 	}
 
@@ -115,14 +114,14 @@ int main(int argc, char* argv[])
 
 	for (i = 0; i < length; i++) {
 		printLetter(message[i]);
-		Sleep(100); // ÑÓ³Ù500ms
+		Sleep(100); // å»¶è¿Ÿ500ms
 	}
 
-	Sleep(2000); // µÈ´ı2Ãë
+	Sleep(2000); // ç­‰å¾…2ç§’
 
 	for (i = length - 1; i >= 0; i--) {
 		deleteLetter();
-		Sleep(75); // ÑÓ³Ù500ms
+		Sleep(75); // å»¶è¿Ÿ500ms
 	}
 
 	openURL(url);
