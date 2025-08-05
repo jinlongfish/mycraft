@@ -1,2 +1,1 @@
-# mypptx
-mypppppppptttttttttttx
+A C program
